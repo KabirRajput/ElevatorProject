@@ -1,4 +1,4 @@
-package OOD3_Elevator_Kabir.elevatorProject;
+package com.java.ood.elevatorproject.modeltest;
 
 import static org.junit.Assert.assertEquals;
 
@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
+
+import com.java.ood.elevatorproject.model.Elevator;
 
 public class ElevatorTest {
 	
