@@ -12,34 +12,38 @@ import com.java.ood.elevatorproject.model.Elevator;
 public class ElevatorTest {
 	
 	@Test
-	public void test_Elevator_From_G_goes_To_1() {
+	public void given_Elevator_From_0_To_1_when_getCurrentFloor_returns1() {
 		
-		List<Integer> result = new ArrayList<Integer>();
-		
+		int floorTarget = 1;
 		Elevator elevator = new Elevator();
 		
-		elevator.go(1);
+		elevator.go(floorTarget);
 		
-		result = elevator.getList();
-		
-		assertEquals("[1]", result.toString());
+		int result = elevator.getCurrentFloor();		
+		assertEquals(1, result);
 		
 	}
 	
+	// Remove the entry after reaching the destination floor
+	
 	@Test
-	public void test_Elevator_From_G_goes_To_1_AND_2() {
-		
-		List<Integer> result = new ArrayList<Integer>();
-		
-		Elevator elevator = new Elevator();
-		
-		elevator.go(1);
-		elevator.go(2);
-		
-		result = elevator.getList();
-		
-		assertEquals("[1, 2]", result.toString());
-		
+	public void given_Elevator_going_it_does_accelearte() {
+	}
+	
+	@Test
+	public void given_Elevator_going_it_does_deccelearte() {
+	}
+	
+	@Test
+	public void given_Elevator_going_it_does_changeFloors() {
+	}
+	
+	@Test
+	public void given_Elevator_going_it_does_serviceFloor() {
+	}
+	
+	@Test
+	public void given_Elevator_going_it_does_checkOverCapacity() {
 	}
 
 }

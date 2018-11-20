@@ -1,16 +1,15 @@
 package com.java.ood.elevatorproject.model;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Elevator {
 
-	private int floor;
+	private int currentFloor;
 	Direction dir;
-	List<Integer> floorList = new LinkedList<Integer>();
+	Queue<Integer> floorList = new LinkedList<Integer>();
 	
 	public void go(int i) {
-		floorList.add(i);
+		setCurrentFloor(i);
 	}
 
 	public void moveUp(){
@@ -25,16 +24,20 @@ public class Elevator {
 		return dir.equals(Direction.STATIONARY);
 	}
 
-	public int getFloor() {
-		return floor;
+	public int getCurrentFloor() {
+		return currentFloor;
 	}
 
-	public void setFloor(int floor) {
-		this.floor = floor;
+	public void setCurrentFloor(int floor) {
+		this.currentFloor = floor;
 	}
 
-	public List<Integer> getList() {
+	public Queue<Integer> getFloorList() {
 		return floorList;
+	}
+	
+	public void addFloor(int i) {
+		floorList.add(i);
 	}
 
 }

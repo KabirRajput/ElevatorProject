@@ -1,4 +1,4 @@
-package com.java.ood.elevatorproject.controllerTest;
+package com.java.ood.elevatorproject.controllertest;
 
 import static org.junit.Assert.*;
 
