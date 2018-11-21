@@ -5,23 +5,25 @@ import java.util.*;
 public class Elevator {
 
 	private int currentFloor;
-	Direction dir;
-	Queue<Integer> floorList = new LinkedList<Integer>();
+	private int minFloor = 0;
+	private ElevatorStatus currentStatus = ElevatorStatus.DEFAULT;
+	private ElevatorDirection dir = ElevatorDirection.UP;
+	private List<Integer> floorList = new LinkedList<Integer>();
 	
 	public void go(int i) {
 		setCurrentFloor(i);
 	}
 
 	public void moveUp(){
-		dir = Direction.UP;
+		dir = ElevatorDirection.UP;
 	}
 
 	public void moveDown(){
-		dir = Direction.DOWN;
+		dir = ElevatorDirection.DOWN;
 	}
 
 	public boolean isMoving(){
-		return dir.equals(Direction.STATIONARY);
+		return dir.equals(ElevatorDirection.STATIONARY);
 	}
 
 	public int getCurrentFloor() {
@@ -32,12 +34,16 @@ public class Elevator {
 		this.currentFloor = floor;
 	}
 
-	public Queue<Integer> getFloorList() {
+	public List<Integer> getFloorList() {
 		return floorList;
 	}
 	
-	public void addFloor(int i) {
-		floorList.add(i);
+	public void addFloor(int floor) {
+		floorList.add(floor);
+	}
+	
+	public void addFloor(int floorIndex, int floor) {
+		floorList.add(floorIndex, floor);
 	}
 
 }
