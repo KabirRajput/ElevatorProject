@@ -1,6 +1,6 @@
 package com.fdmgroup.elevatorproject.model;
 
-import java.util.List;
+import java.util.*;
 
 public class ElevatorLogic {
 	private List<Elevator> elevatorList;
@@ -10,10 +10,22 @@ public class ElevatorLogic {
 	}
 
 	public Elevator assignFloor(int i, int j) {
-		elevatorList.get(0).addFloor(i);
-		elevatorList.get(0).addFloor(j);
+		Elevator selectedElevator = null;
+		if (elevatorList.size() == 1) {
+			selectedElevator = elevatorList.get(0);
+		}
 		
-		return elevatorList.get(0);
+		if (!selectedElevator.getFloorList().contains(i)) {
+			selectedElevator.addFloor(i);
+		}
+		
+		if (!selectedElevator.getFloorList().contains(j)) {
+			selectedElevator.addFloor(j);
+		}
+		
+		
+		System.out.println(selectedElevator.getFloorList());
+		return selectedElevator;
 	}
 
 }
