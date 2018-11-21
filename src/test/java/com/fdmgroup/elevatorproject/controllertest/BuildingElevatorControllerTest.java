@@ -6,11 +6,25 @@ import java.util.*;
 
 import org.junit.*;
 
+import com.fdmgroup.elevatorproject.controller.Controller;
 import com.fdmgroup.elevatorproject.model.Building;
 import com.fdmgroup.elevatorproject.model.Elevator;
+import com.java.ood.elevatorproject.view.SystemView;
 
 public class BuildingElevatorControllerTest {
 
+	@Test 
+	public void testingMVC_framework() {
+		
+		Elevator elevator = new Elevator();
+		SystemView view = new SystemView();
+		Controller controller =  new Controller(elevator,view);
+		
+		controller.updateView();
+		
+		
+		
+	}
 
 	@Test
 	public void given_buildingWith10Floors_when_requestMaxFloor_then_return9() {
