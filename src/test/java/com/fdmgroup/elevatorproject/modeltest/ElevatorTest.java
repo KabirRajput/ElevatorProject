@@ -1,4 +1,4 @@
-package com.java.ood.elevatorproject.modeltest;
+package com.fdmgroup.elevatorproject.modeltest;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.java.ood.elevatorproject.model.Elevator;
+import com.fdmgroup.elevatorproject.model.Elevator;
 
 public class ElevatorTest {
 	

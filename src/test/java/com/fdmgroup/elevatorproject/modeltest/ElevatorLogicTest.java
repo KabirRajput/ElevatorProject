@@ -1,4 +1,4 @@
-package com.java.ood.elevatorproject.modeltest;
+package com.fdmgroup.elevatorproject.modeltest;
 
 import static org.junit.Assert.*;
 
@@ -6,8 +6,8 @@ import java.util.*;
 
 import org.junit.Test;
 
-import com.java.ood.elevatorproject.model.Elevator;
-import com.java.ood.elevatorproject.model.ElevatorLogic;
+import com.fdmgroup.elevatorproject.model.Elevator;
+import com.fdmgroup.elevatorproject.model.ElevatorLogic;
 
 public class ElevatorLogicTest {
 	@Test

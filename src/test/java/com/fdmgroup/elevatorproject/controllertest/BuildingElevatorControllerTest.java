@@ -1,4 +1,4 @@
-package com.java.ood.elevatorproject.controllertest;
+package com.fdmgroup.elevatorproject.controllertest;
 
 import static org.junit.Assert.*;
 
@@ -6,8 +6,8 @@ import java.util.*;
 
 import org.junit.*;
 
-import com.java.ood.elevatorproject.model.Building;
-import com.java.ood.elevatorproject.model.Elevator;
+import com.fdmgroup.elevatorproject.model.Building;
+import com.fdmgroup.elevatorproject.model.Elevator;
 
 public class BuildingElevatorControllerTest {
 

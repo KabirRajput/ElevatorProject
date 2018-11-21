@@ -1,4 +1,4 @@
-package com.java.ood.elevatorproject.model;
+package com.fdmgroup.elevatorproject.model;
 
 public enum Direction {
 	UP,
