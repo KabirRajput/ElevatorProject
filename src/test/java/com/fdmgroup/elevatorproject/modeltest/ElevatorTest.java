@@ -1,13 +1,10 @@
 package com.fdmgroup.elevatorproject.modeltest;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.fdmgroup.elevatorproject.model.Elevator;
+import com.fdmgroup.elevatorproject.model.*;
 
 public class ElevatorTest {
 	
@@ -24,10 +21,22 @@ public class ElevatorTest {
 		
 	}
 	
+//	@Test
+//	public void given_New_Elevator_CurrentStatus_Should_Be_Default()
+//	{
+//		int floorTarget = 1;
+//		Elevator elevator = new Elevator();
+//		
+//		ElevatorStatus eStatus = elevator.getElevatorStatus();
+////		ElevatorDirection eDir = elevator.getDirection(); _and_Direction_Up
+//		
+//		assertEqual();
+//	}
+	
 	// Remove the entry after reaching the destination floor
 	
 	@Test
-	public void given_Elevator_going_it_does_accelearte() {
+	public void given_Elevator_going_it_does_accelerate() {
 	}
 	
 	@Test
