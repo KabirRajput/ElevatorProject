@@ -15,16 +15,9 @@ public class ElevatorLogic {
 			selectedElevator = elevatorList.get(0);
 		}
 		
-		if (!selectedElevator.getFloorList().contains(i)) {
 			selectedElevator.addFloor(i);
-		}
-		
-		if (!selectedElevator.getFloorList().contains(j)) {
 			selectedElevator.addFloor(j);
-		}
 		
-		
-		System.out.println(selectedElevator.getFloorList());
 		return selectedElevator;
 	}
 
