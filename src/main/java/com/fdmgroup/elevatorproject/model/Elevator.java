@@ -2,7 +2,12 @@ package com.fdmgroup.elevatorproject.model;
 
 import java.util.*;
 
-public class Elevator extends java.util.Observable implements Movable,Runnable{
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+public class Elevator extends Thread implements Movable{
+	
+	static Logger log = LogManager.getLogger(Elevator.class);
 
 	private int currentFloor = 0;
 	private ElevatorStatus currentStatus = ElevatorStatus.DEFAULT;
@@ -10,8 +15,10 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 	private LinkedList<Integer> floorList = new LinkedList<Integer>();
 
 	public void go(int targetFloor) {
-		System.out.println("Go: " + floorList);
-		System.out.println("Current Floor: " + currentFloor + ", Target Floor: " + targetFloor);
+		log.info("Go: " + floorList);
+		log.info("Current Floor: " + currentFloor + ", Target Floor: " + targetFloor);
+//		System.out.println("Go: " + floorList);
+//		System.out.println("Current Floor: " + currentFloor + ", Target Floor: " + targetFloor);
 		
 		floorList.pop();
 
@@ -27,15 +34,9 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 		decelerate(200);
 		serviceFloor(400);
 		setCurrentFloor(targetFloor);
-		
-		setChanged();
-		notifyObservers("Go: " + floorList);
-		
-		System.out.println("Go: " + floorList);
-	//  For println reference
-
 	}
 
+	@Override
 	public void run() {
 		while(floorList.size() > 0) 
 		{
@@ -50,13 +51,15 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 	public void changeToUp(){
 		dir = ElevatorDirection.UP;
 
-		System.out.println("Direction: " + dir);
+//		System.out.println("Direction: " + dir);
+		log.info("Direction: " + dir);
 	}
 
 	public void changeToDown(){
 		dir = ElevatorDirection.DOWN;
 
-		System.out.println("Direction: " + dir);
+//		System.out.println("Direction: " + dir);
+		log.info("Direction: " + dir);
 	}
 
 	public boolean isMoving(){
@@ -101,7 +104,8 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 			e.printStackTrace();
 		}
 		
-		System.out.println("Current Status: " + currentStatus);
+//		System.out.println("Current Status: " + currentStatus);
+		log.info("Current Status: " + currentStatus);
 	}
 
 	public void decelerate(int cost) {
@@ -114,7 +118,8 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 			e.printStackTrace();
 		}
 
-		System.out.println("Current Status: " + currentStatus);
+//		System.out.println("Current Status: " + currentStatus);
+		log.info("Current Status: " + currentStatus);
 	}
 
 	public void changeFloor(int cost, int targetFloor) {
@@ -128,11 +133,11 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 				setCurrentFloor(--currentFloor);
 			}
 
-			setChanged();
-			notifyObservers("Current Floor: " + currentFloor);
-			setChanged();
-			notifyObservers("Current Status: " + currentStatus);
-			
+//			System.out.println("Current Floor: " + currentFloor);
+//			System.out.println("Current Status: " + currentStatus);
+			log.info("Current Floor: " + currentFloor);
+			log.info("Current Status: " + currentStatus);
+
 			try {
 				Thread.sleep(cost);
 			} catch (InterruptedException e) {
@@ -146,8 +151,6 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 
 	public void serviceFloor(int cost) {
 		currentStatus = ElevatorStatus.SERVICING;
-		setChanged();
-		notifyObservers(currentStatus);
 
 		try {
 			Thread.sleep(cost);
@@ -156,8 +159,8 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 			e.printStackTrace();
 		}
 
-		System.out.println("Current Status: " + currentStatus);
-
+//		System.out.println("Current Status: " + currentStatus);
+		log.info("Current Status: " + currentStatus);
 	}
 
 	public void restoreToDefault() {
@@ -167,5 +170,4 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 		this.currentStatus = ElevatorStatus.DEFAULT;
 
 	}
-
 }
