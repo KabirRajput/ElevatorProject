@@ -80,6 +80,7 @@ public class ElevatorTest {
 		int f2 = 2;
 		int f3 = 5;
 		int f4 = 8;
+		
 		Elevator elevator = new Elevator();
 		
 		elevator.addFloor(f1);
@@ -91,39 +92,10 @@ public class ElevatorTest {
 		elevator.go(f2);
 		elevator.go(f3);
 		elevator.go(f4);
-		
-		elevator.elevatorListener();
 		
 		List<Integer> floorList = elevator.getFloorList();
 		
 		assertTrue(floorList.isEmpty());
-	}
-	
-	@Test
-	public void given_Elevator_With_Empty_FloorList_It_Should_Restore_Default()
-	{
-		int f1 = 1;
-		int f2 = 2;
-		int f3 = 5;
-		int f4 = 8;
-		
-		Elevator elevator = new Elevator();
-		
-		elevator.addFloor(f1);
-		elevator.addFloor(f2);
-		elevator.addFloor(f3);
-		elevator.addFloor(f4);
-		
-		elevator.go(f1);
-		elevator.go(f2);
-		elevator.go(f3);
-		elevator.go(f4);
-		
-		elevator.elevatorListener();
-		
-		assertEquals(0, elevator.getCurrentFloor());
-		assertEquals(ElevatorDirection.UP, elevator.getDirection());
-		assertEquals(ElevatorStatus.DEFAULT, elevator.getElevatorStatus());
 	}
 	
 	//TODO
