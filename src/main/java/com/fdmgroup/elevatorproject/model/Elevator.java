@@ -22,10 +22,10 @@ public class Elevator extends Thread implements Movable{
 			changeToDown();
 		}
 
-		accelerate(600);
-		changeFloor(600, targetFloor);
-		decelerate(600);
-		serviceFloor(1200);
+		accelerate(200);
+		changeFloor(200, targetFloor);
+		decelerate(200);
+		serviceFloor(400);
 		setCurrentFloor(targetFloor);
 	}
 
