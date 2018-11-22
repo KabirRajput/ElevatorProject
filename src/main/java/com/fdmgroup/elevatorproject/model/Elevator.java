@@ -2,7 +2,12 @@ package com.fdmgroup.elevatorproject.model;
 
 import java.util.*;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 public class Elevator extends Thread implements Movable{
+	
+	static Logger log = LogManager.getLogger(Elevator.class);
 
 	private int currentFloor = 0;
 	private ElevatorStatus currentStatus = ElevatorStatus.DEFAULT;
@@ -45,6 +50,7 @@ public class Elevator extends Thread implements Movable{
 		dir = ElevatorDirection.UP;
 
 		System.out.println("Direction: " + dir);
+//		log.
 	}
 
 	public void changeToDown(){
