@@ -10,27 +10,30 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 	private LinkedList<Integer> floorList = new LinkedList<Integer>();
 
 	public void go(int targetFloor) {
-
+		System.out.println("Go: " + floorList);
+		System.out.println("Current Floor: " + currentFloor + ", Target Floor: " + targetFloor);
+		
 		floorList.pop();
 
-		if(currentFloor - targetFloor > 0)
+		if(targetFloor - currentFloor > 0)
 		{
-			changeToDown();
-		}else {
 			changeToUp();
+		}else{
+			changeToDown();
 		}
 
-		changeFloor(100, targetFloor);
-		accelerate(100);
-		decelerate(100);
-		serviceFloor(200);
+		accelerate(200);
+		changeFloor(200, targetFloor);
+		decelerate(200);
+		serviceFloor(400);
 		setCurrentFloor(targetFloor);
 		
 		setChanged();
 		notifyObservers("Go: " + floorList);
 		
-	//	System.out.println("Go: " + floorList);
+		System.out.println("Go: " + floorList);
 	//  For println reference
+
 	}
 
 	public void run() {
@@ -46,10 +49,14 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 
 	public void changeToUp(){
 		dir = ElevatorDirection.UP;
+
+		System.out.println("Direction: " + dir);
 	}
 
 	public void changeToDown(){
 		dir = ElevatorDirection.DOWN;
+
+		System.out.println("Direction: " + dir);
 	}
 
 	public boolean isMoving(){
@@ -86,10 +93,28 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 
 	public void accelerate(int cost) {
 		currentStatus = ElevatorStatus.ACCELARATING;
+
+		try {
+			Thread.sleep(cost);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("Current Status: " + currentStatus);
 	}
 
 	public void decelerate(int cost) {
 		currentStatus = ElevatorStatus.DECELERATING;
+
+		try {
+			Thread.sleep(cost);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println("Current Status: " + currentStatus);
 	}
 
 	public void changeFloor(int cost, int targetFloor) {
@@ -115,13 +140,24 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 				e.printStackTrace();
 			}
 		}
+		
+
 	}
 
 	public void serviceFloor(int cost) {
 		currentStatus = ElevatorStatus.SERVICING;
-		
 		setChanged();
 		notifyObservers(currentStatus);
+
+		try {
+			Thread.sleep(cost);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println("Current Status: " + currentStatus);
+
 	}
 
 	public void restoreToDefault() {
