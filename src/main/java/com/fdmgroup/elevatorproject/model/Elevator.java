@@ -2,12 +2,16 @@ package com.fdmgroup.elevatorproject.model;
 
 import java.util.*;
 
+<<<<<<< HEAD
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 public class Elevator extends Thread implements Movable{
 	
 	static Logger log = LogManager.getLogger(Elevator.class);
+=======
+public class Elevator extends java.util.Observable implements Movable,Runnable{
+>>>>>>> 4214fd6bb75c1adef0213ae614a4cd262cd02ee4
 
 	private int currentFloor = 0;
 	private ElevatorStatus currentStatus = ElevatorStatus.DEFAULT;
@@ -34,9 +38,15 @@ public class Elevator extends Thread implements Movable{
 		decelerate(200);
 		serviceFloor(400);
 		setCurrentFloor(targetFloor);
+		
+		setChanged();
+		notifyObservers("Go: " + floorList);
+		
+		System.out.println("Go: " + floorList);
+	//  For println reference
+
 	}
 
-	@Override
 	public void run() {
 		while(floorList.size() > 0) 
 		{
@@ -133,11 +143,19 @@ public class Elevator extends Thread implements Movable{
 				setCurrentFloor(--currentFloor);
 			}
 
+<<<<<<< HEAD
 //			System.out.println("Current Floor: " + currentFloor);
 //			System.out.println("Current Status: " + currentStatus);
 			log.info("Current Floor: " + currentFloor);
 			log.info("Current Status: " + currentStatus);
 
+=======
+			setChanged();
+			notifyObservers("Current Floor: " + currentFloor);
+			setChanged();
+			notifyObservers("Current Status: " + currentStatus);
+			
+>>>>>>> 4214fd6bb75c1adef0213ae614a4cd262cd02ee4
 			try {
 				Thread.sleep(cost);
 			} catch (InterruptedException e) {
@@ -151,6 +169,8 @@ public class Elevator extends Thread implements Movable{
 
 	public void serviceFloor(int cost) {
 		currentStatus = ElevatorStatus.SERVICING;
+		setChanged();
+		notifyObservers(currentStatus);
 
 		try {
 			Thread.sleep(cost);
@@ -159,8 +179,13 @@ public class Elevator extends Thread implements Movable{
 			e.printStackTrace();
 		}
 
+<<<<<<< HEAD
 //		System.out.println("Current Status: " + currentStatus);
 		log.info("Current Status: " + currentStatus);
+=======
+		System.out.println("Current Status: " + currentStatus);
+
+>>>>>>> 4214fd6bb75c1adef0213ae614a4cd262cd02ee4
 	}
 
 	public void restoreToDefault() {
@@ -170,4 +195,5 @@ public class Elevator extends Thread implements Movable{
 		this.currentStatus = ElevatorStatus.DEFAULT;
 
 	}
+
 }
