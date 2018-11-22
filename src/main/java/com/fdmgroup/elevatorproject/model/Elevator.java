@@ -2,22 +2,12 @@ package com.fdmgroup.elevatorproject.model;
 
 import java.util.*;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 192108098b15c6843cb386dbf46b6e1030c47dbb
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 public class Elevator extends Thread implements Movable{
 	
 	static Logger log = LogManager.getLogger(Elevator.class);
-<<<<<<< HEAD
-=======
-public class Elevator extends java.util.Observable implements Movable,Runnable{
->>>>>>> 4214fd6bb75c1adef0213ae614a4cd262cd02ee4
-=======
->>>>>>> 192108098b15c6843cb386dbf46b6e1030c47dbb
 
 	private int currentFloor = 0;
 	private ElevatorStatus currentStatus = ElevatorStatus.DEFAULT;
@@ -137,25 +127,9 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 				setCurrentFloor(--currentFloor);
 			}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-//			System.out.println("Current Floor: " + currentFloor);
-//			System.out.println("Current Status: " + currentStatus);
 			log.info("Current Floor: " + currentFloor);
 			log.info("Current Status: " + currentStatus);
 
-=======
-			setChanged();
-			notifyObservers("Current Floor: " + currentFloor);
-			setChanged();
-			notifyObservers("Current Status: " + currentStatus);
-			
->>>>>>> 4214fd6bb75c1adef0213ae614a4cd262cd02ee4
-=======
-			log.info("Current Floor: " + currentFloor);
-			log.info("Current Status: " + currentStatus);
-
->>>>>>> 192108098b15c6843cb386dbf46b6e1030c47dbb
 			try {
 				Thread.sleep(cost);
 			} catch (InterruptedException e) {
@@ -175,17 +149,7 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 			e.printStackTrace();
 		}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-//		System.out.println("Current Status: " + currentStatus);
 		log.info("Current Status: " + currentStatus);
-=======
-		System.out.println("Current Status: " + currentStatus);
-
->>>>>>> 4214fd6bb75c1adef0213ae614a4cd262cd02ee4
-=======
-		log.info("Current Status: " + currentStatus);
->>>>>>> 192108098b15c6843cb386dbf46b6e1030c47dbb
 	}
 
 	public void restoreToDefault() {
