@@ -10,22 +10,23 @@ public class Elevator extends Thread implements Movable{
 	private LinkedList<Integer> floorList = new LinkedList<Integer>();
 
 	public void go(int targetFloor) {
-
+		System.out.println("Go: " + floorList);
+		System.out.println("Current Floor: " + currentFloor + ", Target Floor: " + targetFloor);
+		
 		floorList.pop();
 
-		if(currentFloor - targetFloor > 0)
+		if(targetFloor - currentFloor > 0)
 		{
-			changeToDown();
-		}else {
 			changeToUp();
+		}else{
+			changeToDown();
 		}
 
-		changeFloor(100, targetFloor);
-		accelerate(100);
-		decelerate(100);
-		serviceFloor(200);
+		accelerate(600);
+		changeFloor(600, targetFloor);
+		decelerate(600);
+		serviceFloor(1200);
 		setCurrentFloor(targetFloor);
-		System.out.println("Go: " + floorList);
 	}
 
 	@Override
@@ -42,10 +43,14 @@ public class Elevator extends Thread implements Movable{
 
 	public void changeToUp(){
 		dir = ElevatorDirection.UP;
+
+		System.out.println("Direction: " + dir);
 	}
 
 	public void changeToDown(){
 		dir = ElevatorDirection.DOWN;
+
+		System.out.println("Direction: " + dir);
 	}
 
 	public boolean isMoving(){
@@ -82,10 +87,28 @@ public class Elevator extends Thread implements Movable{
 
 	public void accelerate(int cost) {
 		currentStatus = ElevatorStatus.ACCELARATING;
+
+		try {
+			Thread.sleep(cost);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("Current Status: " + currentStatus);
 	}
 
 	public void decelerate(int cost) {
 		currentStatus = ElevatorStatus.DECELERATING;
+
+		try {
+			Thread.sleep(cost);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println("Current Status: " + currentStatus);
 	}
 
 	public void changeFloor(int cost, int targetFloor) {
@@ -109,15 +132,25 @@ public class Elevator extends Thread implements Movable{
 				e.printStackTrace();
 			}
 		}
+		
+
 	}
 
 	public void serviceFloor(int cost) {
 		currentStatus = ElevatorStatus.SERVICING;
 
-		System.out.println(currentStatus);
+		try {
+			Thread.sleep(cost);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println("Current Status: " + currentStatus);
 	}
 
 	public void restoreToDefault() {
+		floorList.add(0);
 		go(0);
 		this.dir = ElevatorDirection.UP;
 		this.currentStatus = ElevatorStatus.DEFAULT;
