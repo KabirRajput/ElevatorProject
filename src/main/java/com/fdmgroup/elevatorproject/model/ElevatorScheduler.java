@@ -2,10 +2,10 @@ package com.fdmgroup.elevatorproject.model;
 
 import java.util.*;
 
-public class ElevatorLogic {
+public class ElevatorScheduler {
 	private List<Elevator> elevatorList;
 
-	public ElevatorLogic(List<Elevator> elevatorList) {
+	public ElevatorScheduler(List<Elevator> elevatorList) {
 		this.elevatorList = elevatorList;
 	}
 

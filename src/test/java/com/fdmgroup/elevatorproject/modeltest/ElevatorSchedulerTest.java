@@ -7,19 +7,19 @@ import java.util.*;
 import org.junit.Test;
 
 import com.fdmgroup.elevatorproject.model.Elevator;
-import com.fdmgroup.elevatorproject.model.ElevatorLogic;
+import com.fdmgroup.elevatorproject.model.ElevatorScheduler;
 
-public class ElevatorLogicTest {
+public class ElevatorSchedulerTest {
 	@Test
 	public void given_only_1_elevator_assign_floors_to_that_elevator() {
 		// Arrange
 		Elevator elevator = new Elevator();
 		List<Elevator> elevatorList = new ArrayList<Elevator>();
 		elevatorList.add(elevator);
-		ElevatorLogic logic = new ElevatorLogic(elevatorList);
+		ElevatorScheduler scheduler = new ElevatorScheduler(elevatorList);
 		
 		// Act
-		Elevator elevatorAssigned = logic.assignFloor(0, 1);
+		Elevator elevatorAssigned = scheduler.assignFloor(0, 1);
 		
 		// Assert
 		assertEquals(elevator, elevatorAssigned);
@@ -31,10 +31,10 @@ public class ElevatorLogicTest {
 		Elevator elevator = new Elevator();
 		List<Elevator> elevatorList = new ArrayList<Elevator>();
 		elevatorList.add(elevator);
-		ElevatorLogic logic = new ElevatorLogic(elevatorList);
+		ElevatorScheduler scheduler = new ElevatorScheduler(elevatorList);
 		
 		// Act
-		Elevator elevatorAssigned = logic.assignFloor(0, 1);
+		Elevator elevatorAssigned = scheduler.assignFloor(0, 1);
 		
 		// Assert	
 		assertEquals(0, (int) elevatorAssigned.getFloorList().get(0));
