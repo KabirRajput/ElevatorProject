@@ -66,4 +66,11 @@ public class SystemViewTest {
 		Boolean isValid = sysView.validateCommand("1,3");
 		assertEquals(true,isValid);
 	}
+	
+//	@Test
+//	public void view_run_and_quit() throws Exception{
+//		SystemView sysView = new SystemView(mockBufferReader,mockIs,mockPs);
+//		when()
+//		sysView.run(1,10);
+//	} 
 }

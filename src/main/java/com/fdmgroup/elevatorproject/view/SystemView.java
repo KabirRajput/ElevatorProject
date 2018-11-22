@@ -40,27 +40,47 @@ public class SystemView {
 		
 	}
 	
-	public void run(int noOfBuildingInt, int noOfElevatorInt) {
+	public void run(int noOfBuildingInt, int noOfElevatorInt) throws Exception {
 		
+		String c = "";
 		ec.initConfiguration(noOfBuildingInt,noOfElevatorInt);
 		//Waiting input all the time
+		while(c.toUpperCase()!="Q") {
+			c = inputCommand();
+		}
 		
 	}
 	
-	public void inputCommand() throws Exception {
+	public String inputCommand() throws Exception {
 		if(ec!=null) {
 			String i = br.readLine();
+			int currentFloor = Integer.parseInt(i);
+			String j = br.readLine();
+			int destinationFloor = Integer.parseInt(j);
 			if(validateCommand(i)) {
 				Command c = new Command();
-				ec.inputCommand(c);
+				c.currentFloor = currentFloor;
+				c.destinationFloor = destinationFloor;
+				ec.acceptCommand(c);
+				return i;
 			}
 		}
+		return null;
 	}
 	
 	public boolean validateCommand(String command) {
 		
 		return true;
+		
+		//Define validate logic later on
 	}
 	
+	public void printOutput(String message) {
+		System.out.println(message);
+	}
+	
+	public void printError() {
+		System.out.println("Unexpected input");
+	}
 
 }

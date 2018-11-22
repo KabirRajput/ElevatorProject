@@ -9,22 +9,33 @@ import org.junit.*;
 import com.fdmgroup.elevatorproject.controller.Controller;
 import com.fdmgroup.elevatorproject.model.Building;
 import com.fdmgroup.elevatorproject.model.Elevator;
-import com.java.ood.elevatorproject.view.SystemView;
+import com.fdmgroup.elevatorproject.model.ElevatorScheduler;
+import com.fdmgroup.elevatorproject.view.SystemView;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
+
 
 public class BuildingElevatorControllerTest {
 
 	@Test 
-	public void testingMVC_framework() {
+	public void testingMVC_framework_add() {
 		
-		Elevator elevator = new Elevator();
-		SystemView view = new SystemView();
-		List<Elevator> elevatorList = new ArrayList<Elevator>();
-		Controller controller =  new Controller(elevatorList,view);
+		Observable o = mock(Observable.class);
+		Object printOutMessage = mock(Object.class);
+		SystemView view = mock(SystemView.class);
+		ElevatorScheduler eScheduler = mock(ElevatorScheduler.class);
+		Building building = mock(Building.class);
+		Controller controller =  new Controller(view,eScheduler,building);
 		
-		controller.updateView();
 		
-		
-		
+		controller.update(o, printOutMessage);
+
 	}
 
 	@Test
@@ -60,5 +71,15 @@ public class BuildingElevatorControllerTest {
 
 	}
 
-
+	@Test
+	public void controller_init_configuration() {
+		SystemView view = mock(SystemView.class);
+		Building building = new Building(new ArrayList<Elevator>(),40);
+		ElevatorScheduler eScheduler = new ElevatorScheduler(building);
+		Controller controller =  new Controller(view,eScheduler,building);
+		controller.initConfiguration(1, 1);
+		
+		assertEquals(1,building.getAllElevators().size());
+	}
+	
 }

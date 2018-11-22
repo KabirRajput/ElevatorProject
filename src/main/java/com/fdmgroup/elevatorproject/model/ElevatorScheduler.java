@@ -3,22 +3,23 @@ package com.fdmgroup.elevatorproject.model;
 import java.util.*;
 
 public class ElevatorScheduler {
-	private List<Elevator> elevatorList;
 
-	public ElevatorScheduler(List<Elevator> elevatorList) {
-		this.elevatorList = elevatorList;
+	private Building building;
+
+	public ElevatorScheduler(Building building) {
+		this.building = building;
 	}
 
 	public Elevator assignFloor(int i, int j) {
 		Elevator selectedElevator = null;
-		if (elevatorList.size() == 1) {
-			selectedElevator = elevatorList.get(0);
+		if (building.getAllElevators().size() == 1) {
+			selectedElevator = building.getAllElevators().get(0);
 		}
-		
 			selectedElevator.addFloor(i);
 			selectedElevator.addFloor(j);
 		
 		return selectedElevator;
 	}
+	
 
 }

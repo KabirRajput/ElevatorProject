@@ -2,7 +2,7 @@ package com.fdmgroup.elevatorproject.model;
 
 import java.util.*;
 
-public class Elevator extends Thread implements Movable{
+public class Elevator extends java.util.Observable implements Movable,Runnable{
 
 	private int currentFloor = 0;
 	private ElevatorStatus currentStatus = ElevatorStatus.DEFAULT;
@@ -25,10 +25,14 @@ public class Elevator extends Thread implements Movable{
 		decelerate(100);
 		serviceFloor(200);
 		setCurrentFloor(targetFloor);
-		System.out.println("Go: " + floorList);
+		
+		setChanged();
+		notifyObservers("Go: " + floorList);
+		
+	//	System.out.println("Go: " + floorList);
+	//  For println reference
 	}
 
-	@Override
 	public void run() {
 		while(floorList.size() > 0) 
 		{
@@ -99,9 +103,11 @@ public class Elevator extends Thread implements Movable{
 				setCurrentFloor(--currentFloor);
 			}
 
-			System.out.println("Current Floor: " + currentFloor);
-			System.out.println("Current Status: " + currentStatus);
-
+			setChanged();
+			notifyObservers("Current Floor: " + currentFloor);
+			setChanged();
+			notifyObservers("Current Status: " + currentStatus);
+			
 			try {
 				Thread.sleep(cost);
 			} catch (InterruptedException e) {
@@ -113,14 +119,17 @@ public class Elevator extends Thread implements Movable{
 
 	public void serviceFloor(int cost) {
 		currentStatus = ElevatorStatus.SERVICING;
-
-		System.out.println(currentStatus);
+		
+		setChanged();
+		notifyObservers(currentStatus);
 	}
 
 	public void restoreToDefault() {
+		floorList.add(0);
 		go(0);
 		this.dir = ElevatorDirection.UP;
 		this.currentStatus = ElevatorStatus.DEFAULT;
 
 	}
+
 }

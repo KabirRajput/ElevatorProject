@@ -6,8 +6,8 @@ public class Building {
 	private int maxFloor;
 	private List<Elevator> elevatorList;
 
-	public Building(List<Elevator> elevatorList, int noOfFloors) {
-		this.elevatorList = elevatorList;
+	public Building(int noOfFloors) {
+		this.elevatorList = new ArrayList<Elevator>();
 		this.maxFloor = noOfFloors-1;
 	}
 
@@ -17,6 +17,10 @@ public class Building {
 
 	public List<Elevator> getAllElevators() {
 		return elevatorList;
+	}
+	
+	public boolean addElevator(Elevator e) {
+		return elevatorList.add(e);
 	}
 
 }

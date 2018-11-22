@@ -1,39 +1,53 @@
 package com.fdmgroup.elevatorproject.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
+import com.fdmgroup.elevatorproject.model.Building;
 import com.fdmgroup.elevatorproject.model.Elevator;
 import com.fdmgroup.elevatorproject.model.ElevatorScheduler;
 import com.fdmgroup.elevatorproject.view.Command;
-import com.java.ood.elevatorproject.view.SystemView;
+import com.fdmgroup.elevatorproject.view.SystemView;
 
-public class Controller {
 
-	private List<Elevator> elevatorList;
+public class Controller implements java.util.Observer {
+
 	private SystemView view;
 	private ElevatorScheduler eScheduler;
+	private Building building;
 
-	public Controller(List<Elevator> elevator_list, SystemView view) {
+	public Controller(SystemView view,ElevatorScheduler eScheduler,Building building) {
 		super();
-		this.elevatorList = elevatorList;
 		this.view = view;
-	}
-
-	public void updateView() {
-		// TODO Auto-generated method stub
-
+		this.eScheduler = eScheduler;
+		this.building = building;
 	}
 	
-	public void inputCommand(Command c) {
+	public void acceptCommand(Command c) {
+		if(eScheduler!=null) 
 		eScheduler.assignFloor(c.currentFloor, c.destinationFloor);
 	}
 	
 	public void initConfiguration(int noOfBuilding,int noOfElevator) {
 		
 		if(noOfElevator>0) {
-			//Waiting teammate to implements Runnable/Thread to Elevator
-			//Elevator.start() according to noOfElevator
+			for(int i=0;i<noOfElevator;i++) {
+				Elevator elevator = new Elevator();
+				Thread t = new Thread(elevator);
+				t.start();
+				this.building.addElevator(elevator);
+			}
+			
+		}else {
+			view.printError();
 		}
+		
+	}
+
+	public void update(Observable o, Object printOutMessage) {
+		// TODO Auto-generated method stub
+		view.printOutput(printOutMessage.toString());
 	}
 	
 	
