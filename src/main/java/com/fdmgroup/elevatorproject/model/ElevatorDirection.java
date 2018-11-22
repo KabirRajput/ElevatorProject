@@ -1,8 +1,6 @@
 package com.fdmgroup.elevatorproject.model;
 
-public enum Direction {
+public enum ElevatorDirection {
 	UP,
 	DOWN,
-	STATIONARY
-
 }
