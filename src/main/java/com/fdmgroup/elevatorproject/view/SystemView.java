@@ -2,7 +2,6 @@ package com.fdmgroup.elevatorproject.view;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintStream;
 
 import com.fdmgroup.elevatorproject.controller.Controller;
@@ -46,7 +45,7 @@ public class SystemView {
 		ec.initConfiguration(noOfBuildingInt,noOfElevatorInt);
 		//Waiting input all the time
 		while(c.toUpperCase()!="Q") {
-			c = inputCommand();
+		c = inputCommand();
 		}
 		
 	}
@@ -82,5 +81,4 @@ public class SystemView {
 	public void printError() {
 		System.out.println("Unexpected input");
 	}
-
 }

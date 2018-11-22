@@ -1,7 +1,7 @@
 package com.fdmgroup.elevatorproject.model;
 
 public enum ElevatorStatus {
-	ACCELARATING,
+	ACCELERATING,
 	DECELERATING,
 	CHANGINGFLOORS,
 	SERVICING,

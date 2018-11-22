@@ -45,7 +45,7 @@ public class BuildingElevatorControllerTest {
 		elevatorList.add(elevator1);
 		int noOfFloors = 10;
 
-		Building building = new Building(elevatorList, noOfFloors);
+		Building building = new Building(noOfFloors);
 
 		int result = building.getMaxFloor();
 
@@ -64,7 +64,7 @@ public class BuildingElevatorControllerTest {
 		System.out.println(elevatorList);
 		int noOfFloors = 10;
 
-		Building building = new Building(elevatorList, noOfFloors);
+		Building building = new Building(noOfFloors);
 
 		List<Elevator> allElevators = building.getAllElevators();
 		assertEquals(elevatorList, allElevators);
@@ -74,7 +74,7 @@ public class BuildingElevatorControllerTest {
 	@Test
 	public void controller_init_configuration() {
 		SystemView view = mock(SystemView.class);
-		Building building = new Building(new ArrayList<Elevator>(),40);
+		Building building = new Building(40);
 		ElevatorScheduler eScheduler = new ElevatorScheduler(building);
 		Controller controller =  new Controller(view,eScheduler,building);
 		controller.initConfiguration(1, 1);

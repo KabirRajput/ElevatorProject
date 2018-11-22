@@ -4,6 +4,4 @@ public class Command {
 	
 	public int currentFloor;
 	public int destinationFloor;
-	
-
 }

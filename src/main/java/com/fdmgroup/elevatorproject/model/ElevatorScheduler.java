@@ -22,13 +22,14 @@ public class ElevatorScheduler {
 					selectedElevator = elev;
 				}
 			}
-			System.out.println(minSize + " | " +selectedElevator);
 		}
-		
 		selectedElevator.addFloor(from);
 		selectedElevator.addFloor(to);
-
 		return selectedElevator;
+	}
+	
+	public Building getBuilding() {
+		return this.building;
 	}
 	
 
