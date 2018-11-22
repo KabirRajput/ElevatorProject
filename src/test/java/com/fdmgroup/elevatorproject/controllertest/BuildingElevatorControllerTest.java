@@ -18,7 +18,8 @@ public class BuildingElevatorControllerTest {
 		
 		Elevator elevator = new Elevator();
 		SystemView view = new SystemView();
-		Controller controller =  new Controller(elevator,view);
+		List<Elevator> elevatorList = new ArrayList<Elevator>();
+		Controller controller =  new Controller(elevatorList,view);
 		
 		controller.updateView();
 		
