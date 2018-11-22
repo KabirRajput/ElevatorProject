@@ -1,6 +1,6 @@
 package com.fdmgroup.elevatorproject.model;
 
-public class Runner extends Thread{
+public class ElevatorRunner extends Thread{
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

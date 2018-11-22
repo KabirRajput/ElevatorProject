@@ -15,8 +15,10 @@ public class Elevator extends Thread implements Movable{
 	private LinkedList<Integer> floorList = new LinkedList<Integer>();
 
 	public void go(int targetFloor) {
-		System.out.println("Go: " + floorList);
-		System.out.println("Current Floor: " + currentFloor + ", Target Floor: " + targetFloor);
+		log.info("Go: " + floorList);
+		log.info("Current Floor: " + currentFloor + ", Target Floor: " + targetFloor);
+//		System.out.println("Go: " + floorList);
+//		System.out.println("Current Floor: " + currentFloor + ", Target Floor: " + targetFloor);
 		
 		floorList.pop();
 
@@ -49,14 +51,15 @@ public class Elevator extends Thread implements Movable{
 	public void changeToUp(){
 		dir = ElevatorDirection.UP;
 
-		System.out.println("Direction: " + dir);
-//		log.
+//		System.out.println("Direction: " + dir);
+		log.info("Direction: " + dir);
 	}
 
 	public void changeToDown(){
 		dir = ElevatorDirection.DOWN;
 
-		System.out.println("Direction: " + dir);
+//		System.out.println("Direction: " + dir);
+		log.info("Direction: " + dir);
 	}
 
 	public boolean isMoving(){
@@ -101,7 +104,8 @@ public class Elevator extends Thread implements Movable{
 			e.printStackTrace();
 		}
 		
-		System.out.println("Current Status: " + currentStatus);
+//		System.out.println("Current Status: " + currentStatus);
+		log.info("Current Status: " + currentStatus);
 	}
 
 	public void decelerate(int cost) {
@@ -114,7 +118,8 @@ public class Elevator extends Thread implements Movable{
 			e.printStackTrace();
 		}
 
-		System.out.println("Current Status: " + currentStatus);
+//		System.out.println("Current Status: " + currentStatus);
+		log.info("Current Status: " + currentStatus);
 	}
 
 	public void changeFloor(int cost, int targetFloor) {
@@ -128,8 +133,10 @@ public class Elevator extends Thread implements Movable{
 				setCurrentFloor(--currentFloor);
 			}
 
-			System.out.println("Current Floor: " + currentFloor);
-			System.out.println("Current Status: " + currentStatus);
+//			System.out.println("Current Floor: " + currentFloor);
+//			System.out.println("Current Status: " + currentStatus);
+			log.info("Current Floor: " + currentFloor);
+			log.info("Current Status: " + currentStatus);
 
 			try {
 				Thread.sleep(cost);
@@ -152,7 +159,8 @@ public class Elevator extends Thread implements Movable{
 			e.printStackTrace();
 		}
 
-		System.out.println("Current Status: " + currentStatus);
+//		System.out.println("Current Status: " + currentStatus);
+		log.info("Current Status: " + currentStatus);
 	}
 
 	public void restoreToDefault() {
