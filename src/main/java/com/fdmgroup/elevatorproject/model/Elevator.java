@@ -2,7 +2,7 @@ package com.fdmgroup.elevatorproject.model;
 
 import java.util.*;
 
-public class Elevator implements Movable{
+public class Elevator extends Thread implements Movable{
 
 	private int currentFloor = 0;
 	private ElevatorStatus currentStatus = ElevatorStatus.DEFAULT;
@@ -11,6 +11,8 @@ public class Elevator implements Movable{
 
 	public void go(int targetFloor) {
 
+		floorList.pop();
+
 		if(currentFloor - targetFloor > 0)
 		{
 			changeToDown();
@@ -18,18 +20,24 @@ public class Elevator implements Movable{
 			changeToUp();
 		}
 
+		changeFloor(100, targetFloor);
+		accelerate(100);
+		decelerate(100);
+		serviceFloor(200);
 		setCurrentFloor(targetFloor);
+		System.out.println("Go: " + floorList);
 	}
 
-	public void elevatorListener() {
-		while(floorList.size() > 0) // only for Unit Test, change to while(true) for production
+	@Override
+	public void run() {
+		while(floorList.size() > 0) 
 		{
-			if(floorList.size() > 0) {
-				go(floorList.pop());
-			}
-			restoreToDefault();	
+			go(floorList.getFirst());
 		}
 
+		if(floorList.isEmpty()) {
+			restoreToDefault();
+		}
 	}
 
 	public void changeToUp(){
@@ -73,30 +81,46 @@ public class Elevator implements Movable{
 	}
 
 	public void accelerate(int cost) {
-		// TODO Auto-generated method stub
 		currentStatus = ElevatorStatus.ACCELARATING;
 	}
 
 	public void decelerate(int cost) {
-		// TODO Auto-generated method stub
 		currentStatus = ElevatorStatus.DECELERATING;
 	}
 
-	public void changeFloor(int cost) {
-		// TODO Auto-generated method stub
+	public void changeFloor(int cost, int targetFloor) {
 		currentStatus = ElevatorStatus.CHANGINGFLOORS;
+
+		while(currentFloor != targetFloor) {
+			if (dir == ElevatorDirection.UP)
+			{
+				setCurrentFloor(++currentFloor);
+			} else if (dir == ElevatorDirection.DOWN) {
+				setCurrentFloor(--currentFloor);
+			}
+
+			System.out.println("Current Floor: " + currentFloor);
+			System.out.println("Current Status: " + currentStatus);
+
+			try {
+				Thread.sleep(cost);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public void serviceFloor(int cost) {
-		// TODO Auto-generated method stub
 		currentStatus = ElevatorStatus.SERVICING;
+
+		System.out.println(currentStatus);
 	}
 
 	public void restoreToDefault() {
-		// TODO Auto-generated method stub
 		go(0);
-		dir = ElevatorDirection.UP;
-		currentStatus = ElevatorStatus.DEFAULT;
+		this.dir = ElevatorDirection.UP;
+		this.currentStatus = ElevatorStatus.DEFAULT;
 
 	}
 }
