@@ -3,15 +3,21 @@ package com.fdmgroup.elevatorproject.model;
 import java.util.*;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 192108098b15c6843cb386dbf46b6e1030c47dbb
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 public class Elevator extends Thread implements Movable{
 	
 	static Logger log = LogManager.getLogger(Elevator.class);
+<<<<<<< HEAD
 =======
 public class Elevator extends java.util.Observable implements Movable,Runnable{
 >>>>>>> 4214fd6bb75c1adef0213ae614a4cd262cd02ee4
+=======
+>>>>>>> 192108098b15c6843cb386dbf46b6e1030c47dbb
 
 	private int currentFloor = 0;
 	private ElevatorStatus currentStatus = ElevatorStatus.DEFAULT;
@@ -19,10 +25,9 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 	private LinkedList<Integer> floorList = new LinkedList<Integer>();
 
 	public void go(int targetFloor) {
-		log.info("Go: " + floorList);
+
+		log.info("Floors to go: " + floorList);
 		log.info("Current Floor: " + currentFloor + ", Target Floor: " + targetFloor);
-//		System.out.println("Go: " + floorList);
-//		System.out.println("Current Floor: " + currentFloor + ", Target Floor: " + targetFloor);
 		
 		floorList.pop();
 
@@ -33,47 +38,38 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 			changeToDown();
 		}
 
-		accelerate(200);
-		changeFloor(200, targetFloor);
-		decelerate(200);
-		serviceFloor(400);
+		accelerate(1000);
+		changeFloor(1000, targetFloor);
+		decelerate(1000);
+		serviceFloor(2000);
 		setCurrentFloor(targetFloor);
-		
-		setChanged();
-		notifyObservers("Go: " + floorList);
-		
-		System.out.println("Go: " + floorList);
-	//  For println reference
-
 	}
 
+	@Override
 	public void run() {
-		while(floorList.size() > 0) 
+		while (true) 
 		{
-			go(floorList.getFirst());
-		}
-
-		if(floorList.isEmpty()) {
-			restoreToDefault();
+			synchronized(floorList) {
+				if (!floorList.isEmpty()) {
+					go(floorList.getFirst());
+				} else if (floorList.isEmpty() && currentStatus == ElevatorStatus.SERVICING) {
+					restoreToDefault();
+				}
+				
+			}
 		}
 	}
 
 	public void changeToUp(){
 		dir = ElevatorDirection.UP;
 
-//		System.out.println("Direction: " + dir);
 		log.info("Direction: " + dir);
 	}
 
 	public void changeToDown(){
 		dir = ElevatorDirection.DOWN;
 
-//		System.out.println("Direction: " + dir);
 		log.info("Direction: " + dir);
-	}
-
-	public boolean isMoving(){
-		return dir.equals(ElevatorDirection.STATIONARY);
 	}
 
 	public int getCurrentFloor() {
@@ -105,7 +101,7 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 	}
 
 	public void accelerate(int cost) {
-		currentStatus = ElevatorStatus.ACCELARATING;
+		currentStatus = ElevatorStatus.ACCELERATING;
 
 		try {
 			Thread.sleep(cost);
@@ -114,7 +110,6 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 			e.printStackTrace();
 		}
 		
-//		System.out.println("Current Status: " + currentStatus);
 		log.info("Current Status: " + currentStatus);
 	}
 
@@ -128,7 +123,6 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 			e.printStackTrace();
 		}
 
-//		System.out.println("Current Status: " + currentStatus);
 		log.info("Current Status: " + currentStatus);
 	}
 
@@ -144,6 +138,7 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 //			System.out.println("Current Floor: " + currentFloor);
 //			System.out.println("Current Status: " + currentStatus);
 			log.info("Current Floor: " + currentFloor);
@@ -156,6 +151,11 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 			notifyObservers("Current Status: " + currentStatus);
 			
 >>>>>>> 4214fd6bb75c1adef0213ae614a4cd262cd02ee4
+=======
+			log.info("Current Floor: " + currentFloor);
+			log.info("Current Status: " + currentStatus);
+
+>>>>>>> 192108098b15c6843cb386dbf46b6e1030c47dbb
 			try {
 				Thread.sleep(cost);
 			} catch (InterruptedException e) {
@@ -163,14 +163,10 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 				e.printStackTrace();
 			}
 		}
-		
-
 	}
 
 	public void serviceFloor(int cost) {
 		currentStatus = ElevatorStatus.SERVICING;
-		setChanged();
-		notifyObservers(currentStatus);
 
 		try {
 			Thread.sleep(cost);
@@ -180,12 +176,16 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 //		System.out.println("Current Status: " + currentStatus);
 		log.info("Current Status: " + currentStatus);
 =======
 		System.out.println("Current Status: " + currentStatus);
 
 >>>>>>> 4214fd6bb75c1adef0213ae614a4cd262cd02ee4
+=======
+		log.info("Current Status: " + currentStatus);
+>>>>>>> 192108098b15c6843cb386dbf46b6e1030c47dbb
 	}
 
 	public void restoreToDefault() {
@@ -193,7 +193,5 @@ public class Elevator extends java.util.Observable implements Movable,Runnable{
 		go(0);
 		this.dir = ElevatorDirection.UP;
 		this.currentStatus = ElevatorStatus.DEFAULT;
-
 	}
-
 }

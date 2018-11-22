@@ -18,6 +18,7 @@ public class Runner {
 		Building building = new Building(40);
 		SystemView sysView = new SystemView(br,System.in,System.out);
 		ElevatorScheduler es = new ElevatorScheduler(building);
+		
 		Controller ec = new Controller(sysView, es, building);
 		sysView.addController(ec);
 		
