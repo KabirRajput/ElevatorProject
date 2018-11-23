@@ -29,4 +29,4 @@ Final:
                 Large building with multiple elevators, a large amount of floors, and a producer that automatically adds people to random floors.
         
         
-        The final system is built using MVC for a robust muti-threading applications
+        The final system is built using MVC for a robust muti-threaded application
